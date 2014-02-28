@@ -1,0 +1,247 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Dashboard</title>
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <link href="StyleSheet1.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Geostar|Geostar+Fill|Monoton|Erica+One|Baumans|Griffy|Megrim' rel='stylesheet' type='text/css'>
+    <script src="JavaScript1.js"></script> 
+</head>
+
+<body>
+
+
+    <script>
+        $(document).ready(function(){
+            $("#start").click(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/Admin.asmx/StartCrawling",
+                    data: "{}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+
+                    success: function () {
+                        console.log("crawling successful! ^ ^");
+                    },
+                    error: function () {
+                        console.log("wrong");
+                    }
+                });
+            });
+        });
+
+        $(document).ready(function () {
+            $("#stop").click(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/Admin.asmx/StopCrawling",
+                    data: "{}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+
+                    success: function () {
+                        console.log("stop crawling successful! ^ ^");
+                    },
+                    error: function () {
+                        console.log("wrong!");
+                    }
+                });
+            });
+        });
+
+        $(function () {
+            $.ajax(
+                {
+                    type: "POST",
+                    url: "/Admin.asmx/RamUsed",
+                    data: "{}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+
+                    success: function (msg) {
+                        $(".ramrate").html(msg.d);
+                    },
+                    error: function () {
+                        $(".ramrate").html('error');
+                    }
+                });
+        });
+
+        $(function () {
+            $.ajax(
+                {
+                    type: "POST",
+                    url: "/Admin.asmx/CPUUsed",
+                    data: "{}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+
+                    success: function (msg) {
+                        $(".cpurate").html(msg.d);
+                    },
+                    error: function () {
+                        $(".cpurate").html('error');
+                    }
+                });
+        });
+
+        $(function () {
+            $.ajax(
+                {
+                    type: "POST",
+                    url: "/Admin.asmx/getQueueSize",
+                    data: "{}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+
+                    success: function (msg) {
+                        $(".queuesize").html(msg.d);
+                    },
+                    error: function () {
+                        $(".queuesize").html('error');
+                    }
+                });
+        });
+
+        $(function () {
+            $.ajax(
+                {
+                    type: "POST",
+                    url: "/Admin.asmx/getIndexSize",
+                    data: "{}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+
+                    success: function (msg) {
+                        $(".indexsize").html(msg.d);
+                    },
+                    error: function () {
+                        $(".indexsize").html('error');
+                    }
+                });
+        });
+       
+        function getTitle(str) {
+            $.ajax(
+                {
+                    type: "POST",
+                    url: "/Admin.asmx/TestHtmlTitle",
+                    data: JSON.stringify({ url: str }),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+
+                    success: function (msg) {
+                        $("#results1").html(msg.d);
+                    },
+                    error: function () {
+                        $("#results1").html('error');
+                    }
+                });
+            $.ajax(
+               {
+                   type: "POST",
+                   url: "/Admin.asmx/TestHtmlLdate",
+                   data: JSON.stringify({ url: str }),
+                   contentType: "application/json; charset=utf-8",
+                   dataType: "json",
+
+                   success: function (msg) {
+                       $("#results2").html(msg.d);
+                   },
+                   error: function () {
+                       $("#results2").html('error');
+                   }
+               });
+        };
+
+        $(function () {
+            $.ajax(
+                {
+                    type: "POST",
+                    url: "/Admin.asmx/getErrorList",
+                    data: "{}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+
+                    success: function (msg) {
+                        $(".error").html(msg.d);
+                    },
+                    error: function () {
+                        $(".error").html('error');
+                    }
+                });
+        });
+
+        $(function () {
+            $.ajax(
+                {
+                    type: "POST",
+                    url: "/Admin.asmx/getAllcount",
+                    data: "{}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+
+                    success: function (msg) {
+                        $(".numberurl").html(msg.d);
+                    },
+                    error: function () {
+                        $(".numberurl").html('error');
+                    }
+                });
+        });
+    </script>
+
+
+    <div class="content">
+        <h1>Welcome to Sherry's dashboard ^ ^</h1>
+
+        <button type="button" id="start">Start crawling!</button>
+
+        <div class="showMemory">
+            <h2>Machine counters:</h2>
+            <div class="memory">
+                <h3>RAM available:</h3>
+                <div class="ramrate"></div>
+            </div>
+
+            <div class="memory">
+                <h3>CPU Utilization%:</h3>
+                <div class="cpurate"></div>
+            </div>
+        </div>
+
+        <div class="search">
+            <h2>Get title & date from the link:</h2>
+            <input id="tags" type="text" title="type a url" onkeyup="getTitle(this.value)" name="autocomplete" placeholder="Seach by url">
+        </div>
+        <div id="results1"></div>
+        <div id="results2"></div>
+
+
+        <div class="showURL">
+            <h2> #URLs crawled:</h2>
+            <div class="numberurl"></div>
+        </div>
+
+        <div class="queueSize">
+            <h2>The size of the Queue:</h2>
+            <div class="queuesize"></div>
+        </div>
+
+        <div class="indexSize">
+            <h2>The size of the index:</h2>
+            <div class="indexsize"></div>
+        </div>
+
+        <div class="errorList">
+            <h2>Error we have:</h2>
+            <div class="error"></div>
+        </div>
+
+     
+        <button type="button" id="stop">Stop crawling!</button>
+    </div>
+</body>
+
+    </html>

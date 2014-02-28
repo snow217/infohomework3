@@ -1,0 +1,43 @@
+Xueming Xu(Sherry)
+1135954
+Homework #3
+INFO 344
+
+This product is a web that shows the dashboard of the web crawler. 
+We use C# to crawl and index the information we need from www.cnn.com
+Here is the implements for this assignment:
+
+Data is hosted on Azure. We have two queue storages and one table storage to store the information we need.
+
+For the web role:
+	=> dashboard.aspx
+	I have the dashboard that shows:
+		State of each worker role web crawler (save on the table storage)
+		CPU Utilization%, RAM available (get it using performanceCounter)
+		#URLs crawled 
+		Last 10 URLs crawled
+		Size of queue (get the size of the urlqueue storage)
+		Size of index (get the size of the table storage)
+		errors URLs (get the url that has been visited or disallow by the robot.txt)
+		
+	I put ajax call link to the webservice called admin.asmx to get the POST request and display on the index.html
+	
+	=>admin.asmx
+	I use admin.asmx to test the class I wrote and also use ajax to get request.
+	On the admin web service, I have clearIndex that stop the crawling and clear all of my storage.
+	The startCrawling enable me to send a message to my commandqueue to request start.
+	The GetPageTitle can get the title of the given url from the table storage.
+	
+For the worker role:
+   The worker role help us to run crawlers again and again. It sleep 10000ms, wake up and get the commandqueue message from commandqueue
+   and loopback. Then it gets the message from the urlqueue and use the class to filter the url and get title. After getting pagetitle, I out the url and title into the table storage.
+   I use the HashSet to save the visitedurl and queue to save the disallow syntax from the getrobot class. 
+   Then I remove the invalid url from allurl list based on the sidallow queue and visitedurl hashSet.
+   Then I saved the valid urls into my url queue.
+
+
+
+	
+	
+
+

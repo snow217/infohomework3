@@ -1,0 +1,112 @@
+﻿body {
+    background:
+                url("http://demo.sc.chinaz.com/Files/pic/icons/1295/chinaz47.png") right 15% no-repeat,                
+                url("http://pic2.ooopic.com/10/83/29/72b1OOOPIC0c.jpg");
+}
+
+div.ramrate, div.cpurate{
+    margin-top:60px;
+    font-size:70px;
+    font-family: 'Baumans', cursive;
+}
+
+button{
+    margin-top:5%;
+    margin-left:40%;
+    margin-bottom: 30px;
+    width:150px;
+    height:50px;
+    display: inline-block;
+	outline: none;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	font: 14px/100% Arial, Helvetica, sans-serif;
+	padding: .5em 2em .55em;
+	text-shadow: 0 1px 1px rgba(0,0,0,.3);
+	-webkit-border-radius: .5em;
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    color: #fef4e9;
+	border: solid 1px #da7c0c;
+	background: #f78d1d;
+	background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20));
+	background: -moz-linear-gradient(top,  #faa51a,  #f47a20);
+}
+
+div.content{
+    margin-left:10%;
+    margin-top:30px;
+    width: 850px;
+    border:3px dashed white;
+    background-color:rgba(255,255,255,0.9);
+    border-radius: 10px; 
+    font-size:15px;
+}
+
+#results1,#results2{
+    margin-left:10%;
+    margin-top:1%;
+    font-size:15px;
+    font-family: 'Baumans', cursive;
+}
+
+.errorList{
+    margin-bottom:50px;
+}
+
+
+h1,h2{
+   font-family: 'Baumans', cursive;
+   font-size: 30px;
+   margin-top: 30px;
+   margin-left: 5%;
+   margin-bottom:0px;
+}
+
+h2{
+    font-size: 20px;
+}
+
+.memory{
+    margin-top:5%;
+    margin-left:13%;
+    width:200px;
+    height:200px;
+    display: inline-block;
+	outline: none;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	font: 14px/100% Arial, Helvetica, sans-serif;
+	padding: .5em 2em .55em;
+	text-shadow: 0 1px 1px rgba(0,0,0,.3);
+	-webkit-border-radius: .5em;
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    color: #fef4e9;
+	border: solid 1px #da7c0c;
+	background: #f78d1d;
+	background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20));
+	background: -moz-linear-gradient(top,  #faa51a,  #f47a20);
+}
+
+.queuesize,.numberurl,.queuesize,.indexsize,.error{
+    font-size:30px;
+    margin-left:10%;
+    margin-top:15px;
+}
+
+#tags{
+    width:300px;
+    height:30px;
+    margin-left:60px;
+    margin-top:15px;
+}
+
